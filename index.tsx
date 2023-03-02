@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import './App.css'
-import  data from './blocks.json'
-import BlockComponent from './components/block/block'
-import HeaderComponent from './components/header/header'
-import AddModelComponent from './components/modals/addblockmodel'
-import SidebarComponent from './components/sidebar/sidebar'
+import './src/App.css'
+import  data from './src/blocks.json'
+import BlockComponent from './src/components/block/block'
+import HeaderComponent from './src/components/header/header'
+import AddModelComponent from './src/components/modals/addblockmodel'
+import SidebarComponent from './src/components/sidebar/sidebar'
 function App() {
   const [selectedBlock,setSelectedBlock]=useState();
   const [blockModal,setBlockModal]=useState(false);
