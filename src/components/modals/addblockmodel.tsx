@@ -1,11 +1,12 @@
 import { BlockList } from 'net';
 import React, { useState } from 'react'
 import './modal.css'
-const AddModelComponent=(props)=>{
+const AddModelComponent=(props:any)=>{
   const [form,setForm]=useState('');
-  const addBlock=(e)=>{
+  const addBlock=(e:any)=>{
     e.preventDefault()
-    const block=JSON.parse(localStorage.getItem('blocks'))
+    const localData:any=localStorage.getItem('blocks')
+    const block=JSON.parse(localData)
     const newBlock={
       id:block[block.length-1].id+1,
       name:form,
@@ -20,7 +21,7 @@ const AddModelComponent=(props)=>{
     block.push(newBlock)
     props.added(block);
   }
-  const selectChange=(e)=>{
+  const selectChange=(e:any)=>{
     setForm(e)
   }
   return(

@@ -6,7 +6,7 @@ import App from './App'
 const MainComponent=()=>{
   useEffect(()=>{
     localStorage.setItem('blocks',JSON.stringify(data.blocks));
-    },[])
+    })
 }
 ReactDOM.render(
   <React.StrictMode>

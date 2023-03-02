@@ -1,8 +1,7 @@
 import React from 'react'
 import './modal.css'
 import {CartesianGrid, Line, LineChart, XAxis, YAxis} from 'recharts';
-import { Legend } from 'chart.js';
-const ChartModelComponent=(props)=>{
+const ChartModelComponent=(props:any)=>{
   console.log('props',props.data)
   const chartdata = [  { name: 'January', value: 4000 },  { name: 'February', value: 3000 },  { name: 'March', value: 2000 },  { name: 'April', value: 2780 },  { name: 'May', value: 1890 },  { name: 'June', value: 2390 },  { name: 'July', value: 3490 },];
   return(

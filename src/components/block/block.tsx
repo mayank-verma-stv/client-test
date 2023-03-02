@@ -1,7 +1,7 @@
 import './block.css'
 import React, { useEffect, useState } from 'react'
 import ChartModelComponent from '../modals/chart';
-const BlockComponent=(props)=>{
+const BlockComponent=(props:any)=>{
   console.log(props);
   // useEffect(()=>{
   //   console.log(props.block);
@@ -10,7 +10,7 @@ const BlockComponent=(props)=>{
   if(!props.block){
     return <></>
   }
-  const updateModal=(e)=>{
+  const updateModal=(e:any)=>{
     console.log(e);
     setModal({...modal,isVisible:!modal.isVisible,data:e})
   }
@@ -32,7 +32,7 @@ const BlockComponent=(props)=>{
         </tr>
       </thead>
       <tbody>
-        {props.block.indicators.map((e,i)=>{
+        {props.block.indicators.map((e:any,i:any)=>{
           return(
             <tr key={i}>
               <td>{e.name}</td>
