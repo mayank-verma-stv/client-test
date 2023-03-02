@@ -1,0 +1,8 @@
+.header-component{
+  padding: 1rem;
+  border-bottom: 1px black solid;
+}
+.header-component img{
+  height: 50px;
+  width: 50px;
+}

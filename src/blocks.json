@@ -1,0 +1,465 @@
+{
+  "blocks": [
+      {
+          "id": 11064,
+          "name": "Subscription Revenue Planning",
+          "description": "",
+          "model_id": 10530,
+          "library_block": false,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 13811,
+                  "name": "New customer signup rate",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 13812,
+                  "name": "Churn rate",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 14338,
+                  "name": "Upgrade rate to next tier",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 13810,
+                  "name": "Subscription Price per month",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 13813,
+                  "name": "Opening customers",
+                  "type": "Calculation",
+                  "formula": "rollfwd('Total customer number','Pricing Tiers.Starting Users')",
+                  "favourite": false
+              },
+              {
+                  "id": 13814,
+                  "name": "New customers",
+                  "type": "Calculation",
+                  "formula": "'Opening customers' * 'New customer signup rate' * 'Active Tiers'",
+                  "favourite": false
+              },
+              {
+                  "id": 13815,
+                  "name": "Customers lost",
+                  "type": "Calculation",
+                  "formula": "'Opening customers' * 'Churn rate' * -1 * 'Active Tiers'",
+                  "favourite": false
+              },
+              {
+                  "id": 14335,
+                  "name": "Transfers out",
+                  "type": "calculation",
+                  "formula": "\"Opening customers\" * \"Upgrade rate to next tier\" * 'Active Tiers'",
+                  "favourite": false
+              },
+              {
+                  "id": 14336,
+                  "name": "Transfers in",
+                  "type": "Calculation",
+                  "formula": "lookup(\"Transfers out\", \"Pricing Tiers\".\"Next tier\")",
+                  "favourite": false
+              },
+              {
+                  "id": 14337,
+                  "name": "Net Transfers",
+                  "type": "Calculation",
+                  "formula": "\"Transfers out\" * -1 + \"Transfers in\"",
+                  "favourite": false
+              },
+              {
+                  "id": 13816,
+                  "name": "Total customer number",
+                  "type": "Calculation",
+                  "formula": "'Opening customers' + 'New customers' + 'Customers lost' + \"Net Transfers\"",
+                  "favourite": true
+              },
+              {
+                  "id": 13817,
+                  "name": "Recurring Revenue",
+                  "type": "Calculation",
+                  "formula": "'Total customer number' * 'Subscription Price per month' * 'Active Tiers'",
+                  "favourite": true
+              },
+              {
+                  "id": 16098,
+                  "name": "Active Tiers",
+                  "type": "Calculation",
+                  "formula": "\"Pricing Tiers\".Active",
+                  "favourite": false
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              },
+              {
+                  "id": 10898,
+                  "name": "Pricing Tiers"
+              }
+          ]
+      },
+      {
+          "id": 11240,
+          "name": "Product Sales Revenue",
+          "description": "",
+          "model_id": 10530,
+          "library_block": true,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 15261,
+                  "name": "Units",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 15262,
+                  "name": "Price",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 15263,
+                  "name": "Revenue",
+                  "type": "Calculation",
+                  "formula": "Units * Price",
+                  "favourite": false
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              },
+              {
+                  "id": 11239,
+                  "name": "Product"
+              }
+          ]
+      },
+      {
+          "id": 11247,
+          "name": "Other revenue",
+          "description": "",
+          "model_id": 10530,
+          "library_block": true,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 15312,
+                  "name": "Manual revenue input",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 15313,
+                  "name": "Other revenue",
+                  "type": "Calculation",
+                  "formula": "'Manual revenue input'",
+                  "favourite": false
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              },
+              {
+                  "id": 11252,
+                  "name": "Other revenue sources"
+              }
+          ]
+      },
+      {
+          "id": 11249,
+          "name": "People costs",
+          "description": "",
+          "model_id": 10530,
+          "library_block": true,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 15328,
+                  "name": "FTE",
+                  "type": "Calculation",
+                  "formula": "Roles.FTE",
+                  "favourite": false
+              },
+              {
+                  "id": 15332,
+                  "name": "Headcount",
+                  "type": "Calculation",
+                  "formula": "FTE / FTE",
+                  "favourite": false
+              },
+              {
+                  "id": 15324,
+                  "name": "Salary",
+                  "type": "Calculation",
+                  "formula": "Roles.Salary/12 * FTE",
+                  "favourite": false
+              },
+              {
+                  "id": 15325,
+                  "name": "Employers tax",
+                  "type": "Calculation",
+                  "formula": "Salary * Roles.Tax",
+                  "favourite": false
+              },
+              {
+                  "id": 15326,
+                  "name": "Pension contribution",
+                  "type": "Calculation",
+                  "formula": "Salary * Roles.Pension",
+                  "favourite": false
+              },
+              {
+                  "id": 15327,
+                  "name": "Total staff costs",
+                  "type": "Calculation",
+                  "formula": "Salary + 'Employers tax' + 'Pension contribution'",
+                  "favourite": false
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              },
+              {
+                  "id": 11253,
+                  "name": "Roles"
+              }
+          ]
+      },
+      {
+          "id": 11250,
+          "name": "People costs by Dept",
+          "description": "",
+          "model_id": 10530,
+          "library_block": true,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 15330,
+                  "name": "Headcount",
+                  "type": "Calculation",
+                  "formula": "\"People costs\".\"Headcount\"",
+                  "favourite": true
+              },
+              {
+                  "id": 15329,
+                  "name": "FTE",
+                  "type": "Calculation",
+                  "formula": "\"People costs\".\"FTE\"",
+                  "favourite": true
+              },
+              {
+                  "id": 15331,
+                  "name": "Total Staff Costs",
+                  "type": "Calculation",
+                  "formula": "\"People costs\".\"Total staff costs\"",
+                  "favourite": true
+              },
+              {
+                  "id": 16095,
+                  "name": "Rnd costs",
+                  "type": "Calculation",
+                  "formula": "'Total Staff Costs' * Department.Rnd",
+                  "favourite": false
+              },
+              {
+                  "id": 16096,
+                  "name": "Snm costs",
+                  "type": "Calculation",
+                  "formula": "'Total Staff Costs' * Department.Snm",
+                  "favourite": false
+              },
+              {
+                  "id": 16097,
+                  "name": "Gna costs",
+                  "type": "Calculation",
+                  "formula": "'Total Staff Costs' * Department.Gna",
+                  "favourite": false
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              },
+              {
+                  "id": 11255,
+                  "name": "Department"
+              }
+          ]
+      },
+      {
+          "id": 11344,
+          "name": "Cashflow",
+          "description": "",
+          "model_id": 10530,
+          "library_block": true,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 16100,
+                  "name": "Opening Bank Balance",
+                  "type": "Calculation",
+                  "formula": "rollfwd(\"Closing Balance\")",
+                  "favourite": false
+              },
+              {
+                  "id": 16105,
+                  "name": "Directors Loan",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 16101,
+                  "name": "Investment funding",
+                  "type": "Input",
+                  "formula": null,
+                  "favourite": false
+              },
+              {
+                  "id": 16103,
+                  "name": "Revenue",
+                  "type": "Calculation",
+                  "formula": "Rev",
+                  "favourite": false
+              },
+              {
+                  "id": 16102,
+                  "name": "Cash Burn",
+                  "type": "Calculation",
+                  "formula": "0",
+                  "favourite": false
+              },
+              {
+                  "id": 16104,
+                  "name": "Closing Balance",
+                  "type": "Calculation",
+                  "formula": "'Opening Bank Balance' + 'Directors Loan' + 'Investment funding' + Revenue - 'Cash Burn'",
+                  "favourite": false
+              },
+              {
+                  "id": 16108,
+                  "name": "Rev",
+                  "type": "Calculation",
+                  "formula": "\"Subscription Revenue Planning\".\"Recurring Revenue\"",
+                  "favourite": false
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              }
+          ]
+      },
+      {
+          "id": 11248,
+          "name": "Summary PnL",
+          "description": "",
+          "model_id": 10530,
+          "library_block": true,
+          "library_tags": "",
+          "icon": "",
+          "indicators": [
+              {
+                  "id": 15314,
+                  "name": "Revenue",
+                  "type": "Calculation",
+                  "formula": "\"Subscription Revenue Planning\".\"Recurring Revenue\"",
+                  "favourite": true
+              },
+              {
+                  "id": 15315,
+                  "name": "COGS - R and D",
+                  "type": "Calculation",
+                  "formula": "\"People costs by Dept\".\"Rnd costs\"",
+                  "favourite": true
+              },
+              {
+                  "id": 15316,
+                  "name": "Gross Profit",
+                  "type": "Calculation",
+                  "formula": "Revenue - COGS",
+                  "favourite": true
+              },
+              {
+                  "id": 15318,
+                  "name": "Sales n Marketing",
+                  "type": "Calculation",
+                  "formula": "\"People costs by Dept\".\"Snm costs\"",
+                  "favourite": true
+              },
+              {
+                  "id": 15319,
+                  "name": "General expenses n Administration",
+                  "type": "Calculation",
+                  "formula": "\"People costs by Dept\".\"Gna costs\"",
+                  "favourite": true
+              },
+              {
+                  "id": 15320,
+                  "name": "Total Operative Expenses",
+                  "type": "Calculation",
+                  "formula": " 'Sales n Marketing' + 'General expenses n Administration'",
+                  "favourite": true
+              },
+              {
+                  "id": 15321,
+                  "name": "EBIT",
+                  "type": "Calculation",
+                  "formula": "'Gross Profit' - 'Total Operative Expenses'",
+                  "favourite": true
+              },
+              {
+                  "id": 15322,
+                  "name": "Depreciation n Amortisation",
+                  "type": "Calculation",
+                  "formula": null,
+                  "favourite": true
+              },
+              {
+                  "id": 15323,
+                  "name": "EBITDA",
+                  "type": "Calculation",
+                  "formula": "EBIT - 'Depreciation n Amortisation'",
+                  "favourite": true
+              }
+          ],
+          "dimensions": [
+              {
+                  "id": 10897,
+                  "name": "Time"
+              }
+          ]
+      }
+  ]
+}

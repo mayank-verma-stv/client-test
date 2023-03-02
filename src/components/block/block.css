@@ -1,0 +1,18 @@
+.block-component{
+  padding: 2rem;
+}
+.styled-table{
+  border-collapse: collapse;
+  margin: 25px 0;
+}
+table{
+  width: 100%;
+}
+thead {
+  background-color: rgb(232, 232, 232);
+  font-weight: 600;
+}
+td{
+  padding: 1rem;
+}
+tbody{}

@@ -1,0 +1,34 @@
+.modal-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;  
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: rgba(0, 0, 0, 0.517);
+}
+.modal{
+  background-color: white;
+  padding: 2rem 5rem;
+  border-radius: 8px;
+  height: fit-content;
+  width: fit-content;
+}
+.modal-header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.block-div{
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+}
+.block-div input{
+  padding: .5rem;
+}
+.block-div button{
+  margin-top: 1rem;
+}
